@@ -1,0 +1,25 @@
+<main>
+    <div id="main-inner">
+        <form id="lock-form">
+            <div class="mb-3">
+                <label for="keys-amount" class="form-label">Hoeveelheid toegangsleutels</label>
+                <input type="range" class="form-range" id="keys-amount" min="1" max="5" value="1">
+                
+            </div>
+
+            <button type="submit" class="btn btn-primary" id="generate-keys">
+                <output for="keys-amount" id="keys-value" aria-hidden="true"></output>
+                <span>sleutels genereren</span>
+            </button>
+
+            <label for="keys-output" class="form-label" id="keys-output-label">Gegenereerde sleutels</label>
+            <textarea class="form-control" id="keys-output" rows="3" readonly></textarea>
+        </form>
+
+        <label for="existing-keys" class="form-label">Gegenereerde sleutels</label>
+        <div id="existing-keys"></div>
+
+        <button type="button" class="btn btn-primary" id="standard-login">Standard login</button>
+        <button type="button" class="btn btn-danger" id="logout">Log out</button>
+    </div>
+</main>

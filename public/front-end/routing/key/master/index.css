@@ -1,0 +1,72 @@
+#lock-form {
+    margin-bottom: 35px;
+}
+
+#generate-keys {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+#generate-keys > * {
+    width: fit-content;
+}
+
+#keys-output-label {
+    margin-top: 15px;
+}
+
+#keys-output {
+    min-height: 200px;
+}
+
+#existing-keys {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #dee2e6;
+    border-radius: 0.375rem;
+    padding: .375rem .75rem;
+    max-height: 200px;
+    min-height: 50px;
+    margin-bottom: 30px;
+    overflow-y: auto;
+    gap: 15px;
+}
+
+.existing-key {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: space-between;
+}
+
+.existing-key-info {
+    width: 80% !important;
+}
+
+.existing-key-info > * {
+    width: 100%;
+}
+
+.existing-key-actions {
+    flex: 1;
+}
+
+.existing-key-actions > * {
+    height: 100%;
+}
+
+.existing-key-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: start;
+    gap: 5px;
+}
+
+.existing-key-row > * {
+    width: auto !important;
+    padding: unset;
+}

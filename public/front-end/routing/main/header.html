@@ -1,0 +1,44 @@
+<header>
+    <div id="inner-header">
+        <div class="logo" onclick="if (window.location.pathname !== '/') document.location.href = '/'"><span>❞</span></div>
+        
+        <div id="navigation">
+            <nav id="desktop-menu">
+                <div class="desktop-menu-element"><a onclick="scrollToElement({ element: 'section-2', page: '/' })">Inzichten</a></div>
+                <div class="desktop-menu-element"><a onclick="scrollToElement({ element: 'section-3', page: '/' })">Over mij</a></div>
+                <div class="desktop-menu-element"><a onclick="scrollToElement({ element: 'section-4', page: '/' })">Vaardigheden</a></div>
+                <div class="desktop-menu-element"><a onclick="scrollToElement({ element: 'section-5', page: '/' })">Portfolio</a></div>
+                <div class="desktop-menu-element"><a onclick="scrollToElement({ element: 'contact-cta', page: '/' })">Contact</a></div>
+            </nav>
+
+            <div id="mobile-menu-toggle" onclick="toggleMobileMenu()"><img src="/media/images/icons/uncategorized/menu.webp" width="20px" height="20px"></div>
+
+            <div id="theme-toggle">
+                <img src="/media/images/icons/uncategorized/sun.webp" id="sun-icon" alt="Zon">
+                <img src="/media/images/icons/uncategorized/moon.webp" id="moon-icon" alt="Maan">
+            </div>
+        </div>
+    </div>
+
+    <div id="mobile-menu-outer">
+        <div id="mobile-menu">
+            <nav id="mobile-menu-elements">
+                <div class="mobile-menu-element" onclick="scrollToElement({ element: 'section-2', page: '/' })"><span>Inzichten</span></div>
+                <div class="mobile-menu-element" onclick="scrollToElement({ element: 'section-3', page: '/' })"><span>Over mij</span></div>
+                <div class="mobile-menu-element" onclick="scrollToElement({ element: 'section-4', page: '/' })"><span>Vaardigheden</span></div>
+                <div class="mobile-menu-element" onclick="scrollToElement({ element: 'section-5', page: '/' })"><span>Portfolio</span></div>
+                <div class="secondary-button" onclick="scrollToElement({ element: 'contact-cta', page: '/' })"><span>Contact</span></div>
+            </nav>
+
+            <div class="primary-button img-text" onclick="toggleMobileMenu()">
+                <img src="/media/images/icons/uncategorized/close.webp" width="17px" height="17px">
+                <span>Verberg</span>
+            </div>
+        </div>
+    </div>
+
+    <div id="back-to-top" class="img-text primary-button" onclick="scrollAction('section-1')">
+        <img src="/media/images/icons/uncategorized/up.webp" width="17px" height="17px" alt="Omhoog">
+        <span>Naar boven</span>
+    </div>
+</header>

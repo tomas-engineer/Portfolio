@@ -1,0 +1,164 @@
+<extra-start>
+    <link rel="preload" as="fetch" href="/models/sculpture/source/sculpture_compressed.glb" type="model/gltf-binary" crossorigin="anonymous">
+</extra-start>
+
+<main>
+    <section id="section-1">
+        <div id="section-1-inner" class="row">
+            <div class="left">
+                <div id="identity">
+                    <div class="location img-text">
+                        <img src="/media/images/icons/uncategorized/pin.webp" width="18px" height="18px">
+                        <span>VERBORGEN</span>
+                    </div>
+
+                    <h1 id="intro-name">VERBORGEN</h1>
+                </div>
+
+                <p id="introduction">
+                    Een <span class="emphasize">Full Stack Developer</span> die toegankelijke en effectieve
+                    weboplossingen creëert waarin eenvoud en doelgerichtheid samenkomen.
+                </p>
+
+                <div class="row" id="introduction-statistics">
+                    <div class="background-statistic">
+                        <h3>3+</h3>
+                        <span>Jaar Ervaring</span>
+                    </div>
+
+                    <div class="background-statistic">
+                        <h3>8+</h3>
+                        <span>Projecten</span>
+                    </div>
+
+                    <div class="background-statistic">
+                        <h3>5+</h3>
+                        <span>Websites Live</span>
+                    </div>
+                </div>
+
+                <div class="row" id="introduction-buttons">
+                    <div class="primary-button img-text" onclick="scrollToElement({ element: 'section-5', page: '/' })">
+                        <img src="/media/images/icons/uncategorized/suitcase.webp" width="17px" height="17px">
+                        <span>Bekijk Mijn Werk</span>
+                    </div>
+
+                    <div class="secondary-button img-text" onclick="scrollToElement({ element: 'section-3', page: '/' })">
+                        <img src="/media/images/icons/uncategorized/information.webp" width="18px" height="18px">
+                        <span>Over Mij</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="right">
+                <div id="3D-object"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="section-2">
+        <h2>Resultaten In Cijfers</h2>
+        <p>Echte cijfers van projecten die ik heb gerealiseerd</p>
+        <div class="row" id="project-statistics">
+            <div class="statistic">
+                <h3 id="visitors"></h3>
+                <span>Unieke Bezoekers (3 Dagen)</span>
+            </div>
+
+            <div class="statistic">
+                <h3 id="requests"></h3>
+                <span>Requests Gedaan (3 Dagen)</span>
+            </div>
+
+            <div class="statistic">
+                <h3>99%</h3>
+                <span>Uptime</span>
+            </div>
+
+            <div class="statistic">
+                <h3>5+</h3>
+                <span>Zelf Gehoste Websites</span>
+            </div>
+
+            <div class="statistic">
+                <h3>1</h3>
+                <span>Ontwikkelaar</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="section-3">
+        <div id="section-3-inner" class="row">
+            <div class="left">
+                <h3 id="about-title">Gedreven Full Stack Developer Tot in Detail</h3>
+                <p>
+                    Ik bouw en beheer websites met een focus op snelheid, stabiliteit en gebruiksvriendelijkheid. Met
+                    drie jaar praktijkervaring en een passie om mijzelf voortdurend te ontwikkelen los ik problemen snel
+                    en efficiënt op, waardoor ik webapplicaties oplever die echt werken en waarop gebruikers kunnen
+                    vertrouwen.<br><br>
+
+                    Mijn aandacht gaat verder dan alleen de content. Elk detail draagt bij aan een doelgerichte en
+                    visueel aantrekkelijke website. Ik zorg voor een heldere en intuïtieve interface zodat gebruikers
+                    makkelijk kunnen vinden wat ze zoeken zonder onnodige afleiding.
+                </p>
+
+                <div class="button-row" id="about-actions">
+                    <div class="location img-text">
+                        <img src="/media/images/icons/uncategorized/pin.webp" width="18px" height="18px">
+                        <span>VERBORGEN</span>
+                    </div>
+
+                    <div class="primary-button img-text" onclick="scrollToElement({ element: 'contact-cta', page: '/' })">
+                        <img src="/media/images/icons/uncategorized/email.webp" width="18px" height="18px">
+                        <span>Neem Contact Op</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="right">
+                <img src="/media/images/assets/standing.webp" loading="lazy">
+            </div>
+        </div>
+    </section>
+
+    <section id="section-4">
+        <h2>Waar Ik Mee Werk</h2>
+        <p>Talen en tools die ik gebruik en beheers</p>
+
+        <div id="skills-tools">
+            <div id="skills-tools-selector">
+                <div class="selector-button selector-button-selected"><span>Front-End</span></div>
+                <div class="selector-button"><span>Back-End</span></div>
+                <div class="selector-button"><span>DevOps</span></div>
+                <div class="selector-button"><span>Diensten & Tools</span></div>
+            </div>
+
+            <div id="skills-tools-body"></div>
+        </div>
+    </section>
+
+    <section id="section-5">
+        <h2>Wat Ik Heb Gemaakt</h2>
+        <p>Een blik op mijn afgeronde en lopende projecten</p>
+
+        <div id="projects"></div>
+        <div id="project-enlarge-outer">
+            <div id="project-enlarge">
+                <div id="project-enlarge-header">
+                    <div id="project-enlarge-video-outer"></div>
+                </div>
+
+                <div id="project-enlarge-body">
+                    <div>
+                        <h3 id="project-enlarge-title"></h3>
+                        <p id="project-enlarge-date"></p>
+                    </div>
+
+                    <div id="project-enlarge-stacks" class="project-stacks"></div>
+                    <p id="project-enlarge-description"></p>
+                    <div id="project-enlarge-buttons" class="button-row"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
