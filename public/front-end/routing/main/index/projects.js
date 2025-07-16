@@ -376,6 +376,34 @@ function loadProjects() {
 
     pulsecord.buttons[0].action = pulsecord.enlarge.bind(pulsecord);
 
+    const portfolio = new project({
+        name: 'portfolio',
+        title: 'Persoonlijke Portfolio',
+        destination: '/media/projects/portfolio',
+        summary: 'Een verzameling van mijn persoonlijke projecten, vaardigheden en ontwikkeling die mijn creativiteit en groei als softwareontwikkelaar laten zien.',
+        description: 'Deze portfolio geeft een overzicht van mijn werk en vaardigheden aan de hand van diverse persoonlijke projecten. Het laat mijn passie voor softwareontwikkeling zien, samen met mijn probleemoplossend vermogen en de drive om continu te blijven leren en verbeteren.',
+        date: '30 juni 2025',
+        stacks: [
+            { title: 'HTML', image: '/media/images/icons/languages/front-end/html.webp' },
+            { title: 'CSS', image: '/media/images/icons/languages/front-end/css.webp' },
+            { title: 'JavaScript', image: '/media/images/icons/languages/front-end/js.webp' },
+            { title: 'Node.js', image: '/media/images/icons/languages/back-end/nodejs.webp' },
+            { title: 'Express.js', image: '/media/images/icons/languages/back-end/nodejs.webp' },
+            { title: 'REST APIs', image: '/media/images/icons/languages/back-end/rest.webp' },
+            { title: 'Docker', image: '/media/images/icons/tools/docker.webp' },
+            { title: 'NGINX', image: '/media/images/icons/tools/nginx.webp' },
+            { title: 'Cloudflare', image: '/media/images/icons/tools/cloudflare.webp' },
+            { title: 'npm', image: '/media/images/icons/tools/npm.webp' }
+        ],
+        buttons: [
+            { type: 'secondary', text: 'Meer Info', image: '/media/images/icons/uncategorized/enlarge.webp' },
+            { type: 'primary', text: 'Bekijk Code' }
+        ]
+    });
+
+    portfolio.buttons[0].action = portfolio.enlarge.bind(portfolio);
+    portfolio.buttons[1].action = () => window.open('https://github.com/tomas-engineer/Portfolio');
+
     const bloxysearch = new project({
         name: 'bloxysearch',
         title: 'Roblox User Search Tool',
@@ -405,6 +433,7 @@ function loadProjects() {
     loadedProjects.set('rologin', rologin);
     loadedProjects.set('dashboard', dashboard);
     loadedProjects.set('pulsecord', pulsecord);
+    loadedProjects.set('portfolio', portfolio);
     loadedProjects.set('bloxysearch', bloxysearch);
 };
 
