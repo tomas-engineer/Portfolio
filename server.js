@@ -1,36 +1,18 @@
 import { fileURLToPath } from "url";
 import page_builder from "./public/document.js";
-import session from 'express-session';
 import express from "express";
 import path from "path";
 import 'dotenv/config';
 
 import { gatherCombined, getCombined } from './functions/cloudflare.js';
-import { checkExpiry } from './functions/key.js';
 
 import mail from './APIs/mail.js';
-import key from './APIs/key.js';
 
 const PORT = process.env.PORT || 1025;
 const DEBUG = process.env.DEBUG === 'true' || false;
 
-const standardMasterkey = process.env.STANDARDMASTERKEY;
-const keyExpiryDays = parseInt(process.env.KEYEXPIRYDAYS);
-
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
-
-// Express session
-app.use(session({
-    secret: process.env.EXPRESSSESSION,
-    resave: false,
-    saveUninitialized: false,
-    cookie: {
-        maxAge: keyExpiryDays * 24 * 60 * 60 * 1000,
-        sameSite: 'lax',
-        secure: process.env.NODE_ENV === 'production'
-    }
-}));
 
 // Static files and cashing
 const videoMimeTypes = {
@@ -81,10 +63,9 @@ app.get('/sitemap.xml', async (req, res) => {
 
 // APIs
 app.use('/mail', mail);
-app.use('/key', key);
 
 // Routing
-async function setings_builder(req, location) {
+async function setings_builder(location) {
     if (!location) return;
     const location_parts = location.split('/');
 
@@ -109,30 +90,6 @@ async function setings_builder(req, location) {
         if (requests) settings.extra.requests = requests;
     };
 
-    // Resolve to key/input if user is not authenticated
-    if (!req.session.user) {
-        settings.locale = 'key';
-        settings.location = 'index';
-    } else {
-        const user = req.session.user;
-        const type = user?.type;
-        const key = user?.key;
-
-        if (type == 2) {
-            settings.locale = 'key';
-            settings.location = 'master';
-        }
-
-        else if (key !== standardMasterkey) {
-            const expired = await checkExpiry(key);
-
-            if (expired) {
-                settings.locale = 'key';
-                settings.location = 'index';
-            }
-        }
-    };
-
     return settings;
 };
 
@@ -141,7 +98,7 @@ app.get(['/', '/*splat'], async (req, res, next) => {
     const static_location = /\.(css|js|png|jpg|jpeg|gif|svg|ico|woff2?|ttf|eot|map)(\?.*)?$/.test(location);
     if (static_location) return next();
 
-    const settings = await setings_builder(req, location);
+    const settings = await setings_builder(location);
     const document = await page_builder(settings);
 
     if (document == 'NOTFOUND') {

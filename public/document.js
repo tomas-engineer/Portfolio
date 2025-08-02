@@ -66,7 +66,7 @@ async function head(location, locale, extra = {}) {
             <meta charset="UTF-8">
             <meta name="description" content="${await description}">
             <meta name="keywords" content="${await keywords}">
-            <meta name="author" content="VERBORGEN">
+            <meta name="author" content="contact@tomasheij.nl">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <meta name=\"robots\" content=\"noindex\">
             

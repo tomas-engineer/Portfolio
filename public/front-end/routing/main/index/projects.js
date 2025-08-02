@@ -319,6 +319,32 @@ function loadProjects() {
     rologin.buttons[0].action = rologin.enlarge.bind(rologin);
     rologin.buttons[1].action = () => window.open('https://rologin.link/');
 
+    const privachat = new project({
+        name: 'privachat',
+        title: 'Private Chatting Website',
+        destination: '/media/projects/privachat',
+        summary: 'Een privacygerichte, invite-only chatapplicatie waarbij geen data wordt opgeslagen. Elke sessie is tijdelijk en ontworpen voor gebruikers die waarde hechten aan anonimiteit tijdens hun gesprekken.',
+        description: 'PrivaChat is een privacy-first chatapplicatie die draait om vertrouwelijkheid en controle. De app werkt op basis van uitnodigingen waardoor alleen uitgenodigde deelnemers toegang hebben tot een chat. Er wordt geen data opgeslagen, niet van de gesprekken en ook niet van de gebruiker zelf. Zodra de chatroom wordt verlaten wordt de sessie automatisch verwijderd.',
+        date: '18 juli 2025',
+        stacks: [
+            { title: 'HTML', image: '/media/images/icons/languages/front-end/html.webp' },
+            { title: 'CSS', image: '/media/images/icons/languages/front-end/css.webp' },
+            { title: 'JavaScript', image: '/media/images/icons/languages/front-end/js.webp' },
+            { title: 'TypeScript', image: '/media/images/icons/languages/back-end/typescript.webp' },
+            { title: 'JSON', image: '/media/images/icons/languages/uncategorized/json.webp' },
+            { title: 'Next.js', image: '/media/images/icons/languages/uncategorized/nextjs.webp' },
+            { title: 'Tailwind', image: '/media/images/icons/languages/front-end/tailwind.webp' },
+            { title: 'Node.js', image: '/media/images/icons/languages/back-end/nodejs.webp' },
+            { title: 'git', image: '/media/images/icons/tools/git.webp' },
+            { title: 'npm', image: '/media/images/icons/tools/npm.webp' }
+        ],
+        buttons: [
+            { type: 'secondary', text: 'Meer Info', image: '/media/images/icons/uncategorized/enlarge.webp' }
+        ]
+    });
+
+    privachat.buttons[0].action = privachat.enlarge.bind(privachat);
+
     const dashboard = new project({
         name: 'dashboard',
         title: 'Discord Bot Dashboard',
@@ -431,6 +457,7 @@ function loadProjects() {
     bloxysearch.buttons[1].action = () => window.open('https://bloxysearch.onrender.com/');
 
     loadedProjects.set('rologin', rologin);
+    loadedProjects.set('privachat', privachat);
     loadedProjects.set('dashboard', dashboard);
     loadedProjects.set('pulsecord', pulsecord);
     loadedProjects.set('portfolio', portfolio);
