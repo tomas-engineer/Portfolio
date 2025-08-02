@@ -19,5 +19,4 @@ portfolio/
 ├── APIs/                # REST API-endpoints of wrappers die binnen de portfolio gebruikt worden
 ├── functions/           # Back-end functies
 ├── public/              # Klantgerichte bestanden zoals HTML, JS, stylesheets en afbeeldingen
-├── storage/             # Opslag van toegangssleutels
 └── ...
