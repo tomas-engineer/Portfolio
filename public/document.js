@@ -105,6 +105,10 @@ async function header(location, locale) {
     } catch (error) { };
 }
 
+async function loader(location, locale) {
+    return fs.readFileSync(path.join(__dirname, `front-end/routing/${locale}/loader.html`), 'utf8');
+}
+
 async function body(location, locale) {
     return fs.readFileSync(path.join(__dirname, `front-end/routing/${locale}/${location}/index.html`), 'utf8');
 }
@@ -158,6 +162,9 @@ export default async function ({ location, locale, extra }) {
     if (DEBUG) console.log(`Getting the header for ${location} in ${locale}`);
     let _header = await header(location, locale) || '';
     
+    if (DEBUG) console.log(`Getting the loader for ${location} in ${locale}`);
+    let _loader = await loader(location, locale) || '';
+
     if (DEBUG) console.log(`Getting the body for ${location} in ${locale}`);
     let _body = await body(location, locale) || '';
     
@@ -222,7 +229,7 @@ export default async function ({ location, locale, extra }) {
         }
     } catch (error) { }
 
-    let snippet = 'body > * { opacity: 0; }';
+    let snippet = `body > * { opacity: 0; }`;
 
     if (_css && _css.includes('<style>')) {
         _css = _css.replace(
@@ -234,15 +241,27 @@ export default async function ({ location, locale, extra }) {
     }
 
     snippet = `
+    let loaderTimeout;
     Promise.all([
-            document.fonts.ready,
-            new Promise(resolve => window.onload = resolve)
-        ]).then(async () => {
-            const children = Array.from(document.body.children);
-            children.forEach(child => {
+        document.fonts.ready,
+        new Promise(resolve => window.onload = resolve)
+    ]).then(() => {
+        clearTimeout(loaderTimeout);
+        const children = Array.from(document.body.children);
+        children.forEach(child => {
+            if (child.id === "body-loader") {
+                child.style.opacity = '0';
+            } else {
                 child.style.opacity = '1';
-            });
-        });`;
+            }
+        });
+    });
+
+    loaderTimeout = setTimeout(() => {
+        const loader = document.getElementById("body-loader");
+        if (loader) loader.style.opacity = '1';
+    }, 1000);
+    `;
     
     if (_script && _script.includes('</script>')) {
         _script = _script.replace(
@@ -259,6 +278,7 @@ export default async function ({ location, locale, extra }) {
     ${_head}
     ${_css}
     <body>${_header}
+    ${_loader}
     ${_body}
     ${_footer}</body>
     ${_script}

@@ -332,6 +332,7 @@ function loadProjects() {
             { title: 'JavaScript', image: '/media/images/icons/languages/front-end/js.webp' },
             { title: 'TypeScript', image: '/media/images/icons/languages/back-end/typescript.webp' },
             { title: 'JSON', image: '/media/images/icons/languages/uncategorized/json.webp' },
+            { title: 'React.js', image: '/media/images/icons/languages/front-end/react.webp' },
             { title: 'Next.js', image: '/media/images/icons/languages/uncategorized/nextjs.webp' },
             { title: 'Tailwind', image: '/media/images/icons/languages/front-end/tailwind.webp' },
             { title: 'Node.js', image: '/media/images/icons/languages/back-end/nodejs.webp' },
