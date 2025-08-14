@@ -5,7 +5,7 @@ const projectEnlargeElement = document.getElementById('project-enlarge');
 
 const projectEnlargeHeaderElement = document.getElementById('project-enlarge-header');
 const projectEnlargeVideoOuterElement = document.getElementById('project-enlarge-video-outer');
-const projectEnlargeVideoHolderElement = document.getElementById('project-enlarge-video-holder');
+const projectEnlargeLoaderOuterElement = document.getElementById('project-enlarge-loader-outer');
 const projectEnlargeTitleElement = document.getElementById('project-enlarge-title');
 const projectEnlargeDateElement = document.getElementById('project-enlarge-date');
 const projectEnlargeBodyElement = document.getElementById('project-enlarge-body');
@@ -19,7 +19,7 @@ const loadedProjects = new Map();
 var enlargedProject = null;
 
 function isFullscreen(element) {
-    return (document.fullscreenElement === element || document.webkitFullscreenElement === element || document.mozFullScreenElement === element || document.msFullscreenElement === element );
+    return (document.fullscreenElement === element || document.webkitFullscreenElement === element || document.mozFullScreenElement === element || document.msFullscreenElement === element);
 };
 
 function toggleControls(element) {
@@ -110,7 +110,7 @@ class project {
 
             this.stacks.forEach(({ title, image }) => {
                 if (title.toLowerCase() == 'html' || title.toLowerCase() == 'css' || title.toLowerCase() == 'javascript') return;
-                
+
                 const stack = document.createElement('div');
                 stack.className = 'project-stack img-text';
 
@@ -163,20 +163,40 @@ class project {
         projectEnlargeOuterElement.offsetWidth;
 
         projectEnlargeOuterElement.style.opacity = '1';
-        
+
         projectEnlargeElement.style.transform = `translateX(calc(-1 * (100% + (var(--padding) * 2))))`;
         projectEnlargeElement.offsetWidth;
 
-        const video = loadedVideos.get(this.name);
-        video.style.display = 'block';
-        
-        projectEnlargeVideoOuterElement.appendChild(video);
+        const { video, loader } = loadedVideos.get(this.name);
 
-        const projectEnlargeVideoElement = projectEnlargeVideoOuterElement.querySelector('#project-enlarge-video');
-        
-        projectEnlargeVideoElement.autoplay = true;
-        projectEnlargeVideoElement.loop = true;
-        projectEnlargeVideoElement.play();
+        if (!projectEnlargeVideoOuterElement.contains(video)) {
+            projectEnlargeVideoOuterElement.appendChild(video);
+        }
+        if (!projectEnlargeLoaderOuterElement.contains(loader)) {
+            projectEnlargeLoaderOuterElement.appendChild(loader);
+        }
+
+        if (video.readyState < 4) {
+            loader.style.display = 'block';
+            video.style.display = 'none';
+
+            video.addEventListener('canplaythrough', function onReady() {
+                loader.style.display = 'none';
+                video.style.display = 'block';
+                video.play();
+                video.removeEventListener('canplaythrough', onReady);
+            });
+        } else {
+            loader.style.display = 'none';
+            video.style.display = 'block';
+            video.play();
+        }
+
+        video.autoplay = true;
+        video.loop = true;
+        video.muted = true;
+        video.playsInline = true;
+
 
         projectEnlargeTitleElement.textContent = this.title;
         projectEnlargeDateElement.textContent = this.date;
@@ -201,7 +221,7 @@ class project {
                 projectEnlargeStacksElement.appendChild(stack);
             });
         };
-        
+
         projectEnlargeDescriptionElement.textContent = this.description;
 
         if (this.buttons.length > 0) {
@@ -245,6 +265,7 @@ class project {
                 projectEnlargeOuterElement.style.display = 'none';
 
                 projectEnlargeVideoOuterElement.innerHTML = '';
+                projectEnlargeLoaderOuterElement.innerHTML = '';
                 projectEnlargeTitleElement.textContent = '';
                 projectEnlargeDateElement.textContent = '';
                 projectEnlargeStacksElement.innerHTML = '';
@@ -282,11 +303,19 @@ function loadVideos(projects = loadedProjects) {
         const video = document.createElement('video');
         video.src = project.destination + '/showcase.mp4';
         video.id = 'project-enlarge-video';
-        video.preload = 'auto';
+        video.preload = 'metadata';
         video.muted = true;
         video.style.display = 'none';
+        video.playsInline = true;
 
-        loadedVideos.set(project.name, video);
+        const loader = document.createElement('img');
+        loader.src = '/media/projects/loader.gif';
+        loader.id = 'project-enlarge-loader';
+        loader.style.zIndex = '10';
+        loader.style.display = 'none';
+
+
+        loadedVideos.set(project.name, { video, loader });
     });
 };
 
@@ -453,7 +482,7 @@ function loadProjects() {
             { type: 'primary', text: 'Live Demo' }
         ]
     });
-    
+
     bloxysearch.buttons[0].action = bloxysearch.enlarge.bind(bloxysearch);
     bloxysearch.buttons[1].action = () => window.open('https://bloxysearch.onrender.com/');
 

@@ -455,7 +455,8 @@ body.dark #project-enlarge-outer {
     flex-direction: column;
 }
 
-#project-enlarge-video-outer {
+#project-enlarge-video-outer,
+#project-enlarge-loader-outer {
     display: flex;
     align-items: center;
     justify-content: start;
@@ -463,7 +464,8 @@ body.dark #project-enlarge-outer {
     width: 100%;
 }
 
-#project-enlarge-video {
+#project-enlarge-video,
+#project-enlarge-loader {
     height: 100%;
     width: auto;
     max-width: 100%;

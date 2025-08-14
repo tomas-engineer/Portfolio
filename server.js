@@ -16,14 +16,14 @@ const app = express();
 
 // Static files and cashing
 const videoMimeTypes = {
-  '.mp4': 'video/mp4',
-  '.webm': 'video/webm',
-  '.ogg': 'video/ogg',
-  '.mov': 'video/quicktime',
-  '.mkv': 'video/x-matroska',
-  '.avi': 'video/x-msvideo',
-  '.flv': 'video/x-flv',
-  '.wmv': 'video/x-ms-wmv'
+    '.mp4': 'video/mp4',
+    '.webm': 'video/webm',
+    '.ogg': 'video/ogg',
+    '.mov': 'video/quicktime',
+    '.mkv': 'video/x-matroska',
+    '.avi': 'video/x-msvideo',
+    '.flv': 'video/x-flv',
+    '.wmv': 'video/x-ms-wmv'
 };
 
 app.use('/routing', express.static(path.join(__dirname, 'public/front-end/routing'), {
@@ -39,7 +39,7 @@ app.use('/media', express.static(path.join(__dirname, 'public/front-end/dependan
         const ext = path.extname(filePath).toLowerCase();
         if (videoMimeTypes[ext]) res.setHeader('Content-Type', videoMimeTypes[ext]);
     }
-})); 
+}));
 
 app.use('/models', express.static(path.join(__dirname, 'public/front-end/dependants/models'), {
     maxAge: 31536000
